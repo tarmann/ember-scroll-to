@@ -1,7 +1,9 @@
 <div class="container">
   <h2 id="title">ember-scroll-to</h2>
 
-  <nav class="nav">
+  <nav class="sidebar">
+    <h2>Page</h2>
+
     <ul>
       <li>
         Section 1
@@ -20,12 +22,26 @@
       <li>Section 3</li>
       <li>Section 4</li>
     </ul>
+
+    <h2>Contextual</h2>
+
+    {{#scroll-to-wrapper name="ctx" class="contextual" as |scrollTo|}}
+      {{scrollTo.section name="c1" class="section"}}
+      {{scrollTo.section name="c2" class="section"}}
+      {{scrollTo.section name="c3" class="section"}}
+    {{/scroll-to-wrapper}}
   </nav>
 
   <div class="main">
-    <div class="section"></div>
-    <div class="section"></div>
-    <div class="section"></div>
+    {{#scroll-to-wrapper name="page" on="window" as |scrollTo|}}
+      {{scrollTo.section name="1" class="section"}}
+      {{scrollTo.section name="1-A" class="section"}}
+      {{scrollTo.section name="1-B" class="section"}}
+
+      {{scrollTo.section name="2" class="section"}}
+      {{scrollTo.section name="2-A" class="section"}}
+      {{scrollTo.section name="2-B" class="section"}}
+    {{/scroll-to-wrapper}}
   </div>
 </div>
 

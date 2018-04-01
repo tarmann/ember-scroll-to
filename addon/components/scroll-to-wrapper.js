@@ -1,57 +1,65 @@
 import Component from '@ember/component';
-import { alias } from '@ember/object/computed';
 import { set, get } from '@ember/object';
-import $ from 'jquery';
 import { throttle } from '@ember/runloop';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
 import layout from '../templates/components/scroll-to-wrapper';
-import _ from 'lodash';
 
 export default Component.extend({
 
   layout,
 
-  NS: alias('data-toggle-namespace'),
-
-  classNames: ['scroll-to-wrapper'],
-
-  attributeBindings: ['data-toggle-namespace'],
+  scrollToService: service(),
 
   init() {
     this._super(...arguments);
-    this.selected = [];
+    this.set('sections', A());
   },
 
   didInsertElement(){
-    this.$().on(`scroll.${get(this, 'NS')}`, this.onScroll.bind(this));
-    set(this, '$elements', this.$().find(`[id^="${get(this, 'NS')}"]`));
-    this.setSelected();
+    this._super(...arguments);
+    this.updateEl();
+    this.addEventListeners();
+    this.updateSelected();
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    this.$().off(`scroll.${get(this, 'NS')}`);
+    this.removeEventListeners();
   },
 
   onScroll() {
-    throttle(this, this.setSelected.bind(this), 100);
+    throttle(this, this.updateSelected.bind(this), 500);
   },
 
-  setSelected() {
-    let selectedElement = _(get(this, '$elements'))
-      .map( this.mapElements )
-      .reduce( this.getTopOffsetElement )
-      .id
-
-    set(this, 'selected', `#${selectedElement}`);
+  updateEl(){
+    this.set('el', get(this, "on") === 'window' ? window : this.$().get(0));
   },
 
-  mapElements(item) {
-    const offset = $(item).position().top;
-    return { id: item.id, offset };
+  addEventListeners(){
+    this.get('el').addEventListener('scroll', this.onScroll.bind(this));
   },
 
-  getTopOffsetElement(acc, val) {
-    return (Math.abs(val.offset) < Math.abs(acc.offset)) ? val : acc;
+  removeEventListeners(){
+    this.get('el').removeEventListener('scroll', this.onScroll.bind(this));
+  },
+
+  updateSelected() {
+    // update offset for children
+    this.get('sections').forEach(section => this.updateOffset(section))
+
+    // update selected
+    let selected = get(this, 'sections').reduce( this.reduceTopElement );
+    set(this, 'selected', `#${selected.name}`);
+    set(this, `scrollToService.context.${get(this, 'name')}`, selected.name);
+  },
+
+  updateOffset(section){
+    set(section, 'offset', get(section, 'el').getBoundingClientRect().top);
+  },
+
+  reduceTopElement(prev, curr) {
+    return Math.abs(get(prev, 'offset')) > Math.abs(get(curr, 'offset')) ? curr : prev;
   }
 
 });

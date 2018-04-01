@@ -3,20 +3,26 @@
 }
 
 .container{
-  padding-left: 200px;
+  padding-left: 400px;
 }
 
-.nav {
+.sidebar {
   position: fixed;
+  width: 400px;
   left: 0px;
   top: 0px;
+  padding: 20px;
 }
 
-.main {
+.contextual {
+  height: 300px;
+  border: solid 2px #ccc;
+  overflow: auto;
+  padding: 10px;
 }
 
 .section {
   height: 600px;
   background: #cccccc;
-  margin: 20px;
+  margin-bottom: 20px;
 }
