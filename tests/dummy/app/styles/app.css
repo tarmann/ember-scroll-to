@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.container{
+  padding-left: 200px;
+}
+
+.nav {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+}
+
+.main {
+}
+
+.section {
+  height: 600px;
+  background: #cccccc;
+  margin: 20px;
+}
