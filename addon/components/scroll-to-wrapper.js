@@ -13,7 +13,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('sections', A());
+    this.registerContext(this.get('name'));
   },
 
   didInsertElement(){
@@ -29,7 +29,8 @@ export default Component.extend({
   },
 
   onScroll() {
-    throttle(this, this.updateSelected.bind(this), 500);
+
+    throttle(this, this.updateContext.bind(this), 500);
   },
 
   updateEl(){
@@ -44,22 +45,8 @@ export default Component.extend({
     this.get('el').removeEventListener('scroll', this.onScroll.bind(this));
   },
 
-  updateSelected() {
-    // update offset for children
-    this.get('sections').forEach(section => this.updateOffset(section))
-
-    // update selected
-    let selected = get(this, 'sections').reduce( this.reduceTopElement );
-    set(this, 'selected', `#${selected.name}`);
-    set(this, `scrollToService.context.${get(this, 'name')}`, selected.name);
-  },
-
-  updateOffset(section){
-    set(section, 'offset', get(section, 'el').getBoundingClientRect().top);
-  },
-
-  reduceTopElement(prev, curr) {
-    return Math.abs(get(prev, 'offset')) > Math.abs(get(curr, 'offset')) ? curr : prev;
+  updateContext() {
+    get('scrollToService').updateContext( get(this, context) );
   }
 
 });

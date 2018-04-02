@@ -6,26 +6,25 @@
 
     <ul>
       <li>
-        Section 1
+        {{#scroll-to context="page" target="1"}}Section 1{{/scroll-to}}
         <ul>
-          <li>Article A</li>
-          <li>Article B</li>
+          <li>{{#scroll-to context="page" target="1A"}}Article A{{/scroll-to}}</li>
+          <li>
+            {{#scroll-to context="page" target="1B"}}Article B{{/scroll-to}}
+            <ul>
+              <li>{{#scroll-to context="page" target="1B1"}}Part 1{{/scroll-to}}</li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li>
-        Section 2
-        <ul>
-          <li>Article A</li>
-          <li>Article B</li>
-        </ul>
+        <li>{{#scroll-to context="page" target="2"}}Section 2{{/scroll-to}}</li>
       </li>
-      <li>Section 3</li>
-      <li>Section 4</li>
     </ul>
 
     <h2>Contextual</h2>
 
-    {{#scroll-to-wrapper name="ctx" class="contextual" as |scrollTo|}}
+    {{#scroll-to-wrapper context="ctx" class="contextual" as |scrollTo|}}
       {{scrollTo.section name="c1" class="section"}}
       {{scrollTo.section name="c2" class="section"}}
       {{scrollTo.section name="c3" class="section"}}
@@ -33,14 +32,12 @@
   </nav>
 
   <div class="main">
-    {{#scroll-to-wrapper name="page" on="window" as |scrollTo|}}
+    {{#scroll-to-wrapper context="page" on="window" as |scrollTo|}}
       {{scrollTo.section name="1" class="section"}}
-      {{scrollTo.section name="1-A" class="section"}}
-      {{scrollTo.section name="1-B" class="section"}}
-
+      {{scrollTo.section name="1A" class="section"}}
+      {{scrollTo.section name="1B" class="section"}}
+      {{scrollTo.section name="1B1" class="section"}}
       {{scrollTo.section name="2" class="section"}}
-      {{scrollTo.section name="2-A" class="section"}}
-      {{scrollTo.section name="2-B" class="section"}}
     {{/scroll-to-wrapper}}
   </div>
 </div>
