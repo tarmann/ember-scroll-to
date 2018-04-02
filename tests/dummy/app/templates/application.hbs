@@ -4,15 +4,16 @@
   <nav class="sidebar">
     <h2>Page</h2>
 
+    {{#scroll-to-nav context="page" as |scroll-to|}}
     <ul>
       <li>
-        {{#scroll-to context="page" target="1"}}Section 1{{/scroll-to}}
+        {{#scroll-to-nav target="1"}}Section 1{{/scroll-to-nav}}
         <ul>
-          <li>{{#scroll-to context="page" target="1A"}}Article A{{/scroll-to}}</li>
+          <li>{{#scroll-to-nav target="1A"}}Article A{{/scroll-to-nav}}</li>
           <li>
-            {{#scroll-to context="page" target="1B"}}Article B{{/scroll-to}}
+            {{#scroll-to-nav target="1B"}}Article B{{/scroll-to-nav}}
             <ul>
-              <li>{{#scroll-to context="page" target="1B1"}}Part 1{{/scroll-to}}</li>
+              <li>{{#scroll-to-nav target="1B1"}}Part 1{{/scroll-to-nav}}</li>
             </ul>
           </li>
         </ul>
@@ -21,6 +22,7 @@
         <li>{{#scroll-to context="page" target="2"}}Section 2{{/scroll-to}}</li>
       </li>
     </ul>
+    {{/scroll-to-nav}}
 
     <h2>Contextual</h2>
 

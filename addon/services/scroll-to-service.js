@@ -25,6 +25,7 @@ export default Service.extend({
   },
 
   updateContext(context){
+    console.log('updateContext', context)
     this.updateSections(context);
     this.updateSelected(context);
   },
@@ -36,7 +37,7 @@ export default Service.extend({
   updateSelected(context){
     const sections = get(this, `context.${context}.sections`);
     const selected = sections.reduce( this.reduceTopElement );
-    set(this, `context.${context}.selected`, `#${selected.name}`);
+    set(this, `context.${context}.active`, `#${selected.name}`);
   },
 
   updateOffset(section){
