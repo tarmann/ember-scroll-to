@@ -13,14 +13,14 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.registerContext(this.get('name'));
+    get(this, 'scrollToService').registerContext( get(this, 'context') );
   },
 
   didInsertElement(){
     this._super(...arguments);
     this.updateEl();
     this.addEventListeners();
-    this.updateSelected();
+    this.updateContext();
   },
 
   willDestroyElement() {
@@ -29,7 +29,6 @@ export default Component.extend({
   },
 
   onScroll() {
-
     throttle(this, this.updateContext.bind(this), 500);
   },
 
@@ -46,7 +45,7 @@ export default Component.extend({
   },
 
   updateContext() {
-    get('scrollToService').updateContext( get(this, context) );
+    get(this, 'scrollToService').updateContext( get(this, 'context') );
   }
 
 });

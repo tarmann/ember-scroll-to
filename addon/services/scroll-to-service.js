@@ -16,8 +16,8 @@ export default Service.extend({
     console.log(context);
   },
 
-  registerSection(context, section){
-    this.get(`context.${context}`).pushObject( section );
+  registerSection(contextName, section){
+    get(this, `context.${contextName}.sections`).pushObject( section );
   },
 
   unregisterContext(){
@@ -25,7 +25,7 @@ export default Service.extend({
   },
 
   updateContext(context){
-    this.udpdateSections(context);
+    this.updateSections(context);
     this.updateSelected(context);
   },
 
@@ -40,6 +40,7 @@ export default Service.extend({
   },
 
   updateOffset(section){
+    console.log(get(section, 'el').getBoundingClientRect().top);
     set(section, 'offset', get(section, 'el').getBoundingClientRect().top);
   },
 

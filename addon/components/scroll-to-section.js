@@ -34,8 +34,8 @@ export default Component.extend({
   },
 
   registerSection(){
-    const { scrollToService, context, section } = getProperties('scrollToService', 'context', 'section');
-    const sectionObj = scrollToService.registerSection( context, section );
+    const { context, section } = getProperties(this, 'context', 'section');
+    const sectionObj = get(this, 'scrollToService').registerSection( context, section );
     set(this, 'section', sectionObj);
   },
 
