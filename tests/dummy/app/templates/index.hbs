@@ -1,18 +1,18 @@
 <nav class="sidebar">
-  <h2>Page</h2>
-
   {{#scroll-to-nav context="page" as |pageNav|}}
     <ul>
       <li>{{#pageNav.scroll-to section="1"}}Section 1{{/pageNav.scroll-to}}</li>
+      <li>{{#pageNav.scroll-to section="1A"}}Section 1A{{/pageNav.scroll-to}}</li>
+      <li>{{#pageNav.scroll-to section="1B"}}Section 1B{{/pageNav.scroll-to}}</li>
+      <li>{{#pageNav.scroll-to section="1B1"}}Section 1B1{{/pageNav.scroll-to}}</li>
       <li>{{#pageNav.scroll-to section="2"}}Section 2{{/pageNav.scroll-to}}</li>
     </ul>
   {{/scroll-to-nav}}
-
-  <h2>Contextual</h2>
 </nav>
 
 <div class="main">
   {{#scroll-to-wrapper context="page" on="window" as |pageContext|}}
+
     {{#pageContext.section name="1" class="section contextual"}}
       {{#scroll-to-nav context="local" tagName="ul" class="contextual-nav" as |localNav|}}
         <li>{{#localNav.scroll-to section="A"}}A{{/localNav.scroll-to}}</li>
@@ -31,6 +31,7 @@
     {{pageContext.section name="1B" class="section"}}
     {{pageContext.section name="1B1" class="section"}}
     {{pageContext.section name="2" class="section"}}
+
   {{/scroll-to-wrapper}}
 </div>
 
