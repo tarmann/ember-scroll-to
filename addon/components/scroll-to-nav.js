@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
+import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import layout from '../templates/components/scroll-to-nav';
 
@@ -7,11 +7,18 @@ export default Component.extend({
 
   layout,
 
-  scrollToService: service()
+  scrollToService: service(),
 
-  // contextObj: computed('scrollToService.context', function(){
-  //   console.log(`scrollToService.context.${get(this, 'context')}`)
-  //   return get(this, `scrollToService.context.${get(this, 'context')}`);
-  // })
+  didReceiveAttrs(){
+    this._super(...arguments);
+    console.log('hello');
+    this.registerContext();
+  },
+
+  registerContext(){
+    const context = get(this, 'scrollToService').registerContext( get(this, 'context') );
+    set(this, '_context', context);
+    console.log(context);
+  }
 
 });

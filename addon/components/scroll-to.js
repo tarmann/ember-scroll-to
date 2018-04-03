@@ -15,11 +15,13 @@ export default Component.extend({
 
   classNameBindings: ['isActive'],
 
-  href: computed('context', 'target', function(){
-    return `#${get(this, 'context')}-${get(this, 'target')}`;
+  href: computed('section', '_context.name', function(){
+    return `#${get(this, '_context.name')}-${get(this, 'section')}`;
   }),
 
-  isActive: computed.equal('href', 'context.active'),
+  isActive: computed('section', '_context.active', function(){
+    return get(this, 'section') === get(this, '_context.active');
+  }),
 
   click(e){
     e.preventDefault();

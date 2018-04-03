@@ -26,16 +26,16 @@ export default Component.extend({
   }),
 
   createSection(){
-    this.set('section', {
-      name: this.get('name'),
-      el: this.$().get(0),
+    set(this, 'section', {
+      name:   this.get('name'),
+      el:     this.$().get(0),
       offset: null
     });
   },
 
   registerSection(){
-    const { context, section } = getProperties(this, 'context', 'section');
-    get(this, 'scrollToService').registerSection( context, section );
+    const { scrollToService, context, section } = getProperties(this, 'scrollToService', 'context', 'section');
+    scrollToService.registerSection( context, section );
   },
 
   unregisterSection(){

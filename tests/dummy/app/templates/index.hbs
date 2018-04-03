@@ -1,0 +1,30 @@
+<nav class="sidebar">
+  <h2>Page</h2>
+
+  {{#scroll-to-nav context="page" as |page|}}
+    <ul>
+      <li>{{#page.scroll-to section="1"}}Section 1{{/page.scroll-to}}</li>
+      <li>{{#page.scroll-to section="2"}}Section 2{{/page.scroll-to}}</li>
+    </ul>
+  {{/scroll-to-nav}}
+
+  <h2>Contextual</h2>
+</nav>
+
+<div class="main">
+  {{#scroll-to-wrapper context="page" on="window" as |pageContext|}}
+    {{#pageContext.section name="1" class="section"}}
+      {{#scroll-to-wrapper context="local" class="contextual" as |localContext|}}
+          {{localContext.section name="c1" class="section"}}
+          {{localContext.section name="c2" class="section"}}
+          {{localContext.section name="c3" class="section"}}
+        {{/scroll-to-wrapper}}
+    {{/pageContext.section}}
+
+    {{pageContext.section name="1A" class="section"}}
+    {{pageContext.section name="1B" class="section"}}
+    {{pageContext.section name="1B1" class="section"}}
+    {{pageContext.section name="2" class="section"}}
+  {{/scroll-to-wrapper}}
+</div>
+

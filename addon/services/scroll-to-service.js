@@ -4,44 +4,53 @@ import { A } from '@ember/array';
 
 export default Service.extend({
 
-  context: {},
+  foo: 'bar',
+
+  init() {
+    this._super(...arguments);
+    this.set('context', {});
+    this.set('contexts', A());
+  },
 
   registerContext(contextName){
-    const context = { active: null, sections: A() };
-    set(this, `context.${contextName}`, context);
+    let context = this.getContext(contextName);
+    if(!context) {
+      context = { name: contextName , active: null, sections: A() };
+      get(this, 'contexts').pushObject(context);
+    }
     return context;
   },
 
-  unregisterContext(context){
-    console.log(context);
+  getContext(contextName){
+    return get(this, 'contexts').findBy('name', contextName);
+  },
+
+  unregisterContext(contextName){
+    const context = this.getContext(contextName);
+    get(this, 'contexts').removeObject( context );
   },
 
   registerSection(contextName, section){
-    get(this, `context.${contextName}.sections`).pushObject( section );
+    const context = this.getContext(contextName);
+    get(context, 'sections').pushObject( section );
   },
 
-  unregisterContext(){
-    // ...
-  },
-
-  updateContext(context){
-    console.log('updateContext', context)
+  updateContext(contextName){
+    const context = this.getContext(contextName);
     this.updateSections(context);
     this.updateSelected(context);
   },
 
   updateSections(context){
-    get(this, `context.${context}.sections`).forEach(section => this.updateOffset(section))
+    get(context, 'sections').forEach(section => this.updateOffset(section))
   },
 
   updateSelected(context){
-    const sections = get(this, `context.${context}.sections`);
-    const selected = sections.reduce( this.reduceTopElement );
-    set(this, `context.${context}.active`, `#${selected.name}`);
+    const selected = get(context, 'sections').reduce( this.reduceTopElement );
+    set(context, 'active', selected.name);
   },
 
   updateOffset(section){
-    console.log(get(section, 'el').getBoundingClientRect().top);
     set(section, 'offset', get(section, 'el').getBoundingClientRect().top);
   },
 

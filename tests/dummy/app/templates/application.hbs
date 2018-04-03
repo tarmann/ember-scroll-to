@@ -1,47 +1,6 @@
 <div class="container">
   <h2 id="title">ember-scroll-to</h2>
-
-  <nav class="sidebar">
-    <h2>Page</h2>
-
-    {{#scroll-to-nav context="page" as |scroll-to|}}
-    <ul>
-      <li>
-        {{#scroll-to-nav target="1"}}Section 1{{/scroll-to-nav}}
-        <ul>
-          <li>{{#scroll-to-nav target="1A"}}Article A{{/scroll-to-nav}}</li>
-          <li>
-            {{#scroll-to-nav target="1B"}}Article B{{/scroll-to-nav}}
-            <ul>
-              <li>{{#scroll-to-nav target="1B1"}}Part 1{{/scroll-to-nav}}</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <li>{{#scroll-to context="page" target="2"}}Section 2{{/scroll-to}}</li>
-      </li>
-    </ul>
-    {{/scroll-to-nav}}
-
-    <h2>Contextual</h2>
-
-    {{#scroll-to-wrapper context="ctx" class="contextual" as |scrollTo|}}
-      {{scrollTo.section name="c1" class="section"}}
-      {{scrollTo.section name="c2" class="section"}}
-      {{scrollTo.section name="c3" class="section"}}
-    {{/scroll-to-wrapper}}
-  </nav>
-
-  <div class="main">
-    {{#scroll-to-wrapper context="page" on="window" as |scrollTo|}}
-      {{scrollTo.section name="1" class="section"}}
-      {{scrollTo.section name="1A" class="section"}}
-      {{scrollTo.section name="1B" class="section"}}
-      {{scrollTo.section name="1B1" class="section"}}
-      {{scrollTo.section name="2" class="section"}}
-    {{/scroll-to-wrapper}}
-  </div>
+  {{outlet}}
 </div>
 
-{{outlet}}
+

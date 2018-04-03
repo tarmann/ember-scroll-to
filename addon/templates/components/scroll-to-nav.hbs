@@ -1,2 +1,4 @@
-{{context}} - {{log contextObj.active}}
-{{yield (component "scroll-to" context=contextObj)}}
+{{yield (hash
+    scroll-to=(component "scroll-to" context=context _context=_context)
+  )
+}}
