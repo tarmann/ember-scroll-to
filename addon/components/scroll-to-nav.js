@@ -11,14 +11,12 @@ export default Component.extend({
 
   didReceiveAttrs(){
     this._super(...arguments);
-    console.log('hello');
     this.registerContext();
   },
 
   registerContext(){
     const context = get(this, 'scrollToService').registerContext( get(this, 'context') );
     set(this, '_context', context);
-    console.log(context);
   }
 
 });

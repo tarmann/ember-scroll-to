@@ -11,7 +11,7 @@
 </nav>
 
 <div class="main">
-  {{#scroll-to-wrapper context="page" on="window" as |pageContext|}}
+  {{#scroll-to-context context="page" on="window" as |pageContext|}}
 
     {{#pageContext.section name="1" class="section contextual"}}
       {{#scroll-to-nav context="local" tagName="ul" class="contextual-nav" as |localNav|}}
@@ -20,11 +20,11 @@
         <li>{{#localNav.scroll-to section="C"}}C{{/localNav.scroll-to}}</li>
       {{/scroll-to-nav}}
 
-        {{#scroll-to-wrapper context="local" class="contextual-inner" as |localContext|}}
+        {{#scroll-to-context context="local" class="contextual-inner" as |localContext|}}
           {{localContext.section name="A" class="section"}}
           {{localContext.section name="B" class="section"}}
           {{localContext.section name="C" class="section"}}
-        {{/scroll-to-wrapper}}
+        {{/scroll-to-context}}
     {{/pageContext.section}}
 
     {{pageContext.section name="1A" class="section"}}
@@ -32,6 +32,6 @@
     {{pageContext.section name="1B1" class="section"}}
     {{pageContext.section name="2" class="section"}}
 
-  {{/scroll-to-wrapper}}
+  {{/scroll-to-context}}
 </div>
 

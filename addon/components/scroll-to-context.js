@@ -1,9 +1,8 @@
 import Component from '@ember/component';
-import { set, get } from '@ember/object';
+import { get } from '@ember/object';
 import { throttle } from '@ember/runloop';
-import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
-import layout from '../templates/components/scroll-to-wrapper';
+import layout from '../templates/components/scroll-to-context';
 
 export default Component.extend({
 
@@ -49,3 +48,4 @@ export default Component.extend({
   }
 
 });
+
