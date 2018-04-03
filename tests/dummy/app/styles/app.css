@@ -2,6 +2,15 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+ul li {
+  padding: 0px;
+}
+
 .container{
   padding-left: 400px;
 }
@@ -14,15 +23,49 @@
   padding: 20px;
 }
 
-.contextual {
-  height: 300px;
-  border: solid 2px #ccc;
-  overflow: auto;
-  padding: 10px;
-}
-
 .section {
   height: 600px;
   background: #cccccc;
   margin-bottom: 20px;
+}
+
+.is-active {
+  font-weight: bold;
+}
+
+.contextual {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.contextual-inner {
+  height: 300px;
+  border: solid 2px red;
+  overflow: auto;
+  padding: 10px;
+}
+
+.contextual-nav {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+
+.contextual-nav > li{
+  flex: 1;
+}
+
+.contextual-nav > li a {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  background: #CCCCCC;
+}
+
+.contextual-nav > li a.is-active {
+  background: #333333;
 }
