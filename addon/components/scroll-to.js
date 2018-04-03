@@ -23,7 +23,7 @@ export default Component.extend({
     return get(this, 'section') === get(this, '_context.active');
   }),
 
-  click(e){
-    e.preventDefault();
-  }
+  // click(e){
+  //   e.preventDefault();
+  // }
 });

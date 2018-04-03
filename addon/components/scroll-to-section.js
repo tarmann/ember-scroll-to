@@ -22,7 +22,7 @@ export default Component.extend({
   attributeBindings: ['id'],
 
   id: computed('context', 'target', function(){
-    return `#${get(this, 'context')}-${get(this, 'name')}`;
+    return `${get(this, 'context')}-${get(this, 'name')}`;
   }),
 
   createSection(){
