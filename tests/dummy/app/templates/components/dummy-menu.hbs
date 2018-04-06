@@ -1,0 +1,12 @@
+{{#scroll-to-nav context="page" as |pageNav|}}
+  <ul>
+    <li>{{#pageNav.scroll-to section="welcome"}}Welcome{{/pageNav.scroll-to}}</li>
+    <li>{{#pageNav.scroll-to section="installation"}}Installation{{/pageNav.scroll-to}}</li>
+    <li>{{#pageNav.scroll-to section="usage"}}Usage{{/pageNav.scroll-to}}</li>
+    <li>{{#pageNav.scroll-to section="options"}}Options{{/pageNav.scroll-to}}</li>
+    <li>{{#pageNav.scroll-to section="nested-sections"}}Nested Sections{{/pageNav.scroll-to}}</li>
+    <li>{{#pageNav.scroll-to section="examples"}}Examples{{/pageNav.scroll-to}}</li>
+  </ul>
+{{/scroll-to-nav}}
+
+{{yield}}

@@ -1,4 +1,5 @@
 * {
+  font-family: 'Open Sans';
   box-sizing: border-box;
 }
 
@@ -12,21 +13,26 @@ ul li {
 }
 
 .container{
-  padding-left: 400px;
+  padding-left: 300px;
+}
+
+.main {
+  /* padding: 50px; */
 }
 
 .sidebar {
   position: fixed;
-  width: 400px;
+  width: 300px;
   left: 0px;
   top: 0px;
   padding: 20px;
 }
 
 .section {
-  height: 600px;
-  background: #cccccc;
+  min-height: 100vh;
+  border: solid 1px #cccccc;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .is-active {

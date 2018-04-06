@@ -1,36 +1,76 @@
 <nav class="sidebar">
-  {{#scroll-to-nav context="page" as |pageNav|}}
-    <ul>
-      <li>{{#pageNav.scroll-to section="1"}}Section 1{{/pageNav.scroll-to}}</li>
-      <li>{{#pageNav.scroll-to section="1A"}}Section 1A{{/pageNav.scroll-to}}</li>
-      <li>{{#pageNav.scroll-to section="1B"}}Section 1B{{/pageNav.scroll-to}}</li>
-      <li>{{#pageNav.scroll-to section="1B1"}}Section 1B1{{/pageNav.scroll-to}}</li>
-      <li>{{#pageNav.scroll-to section="2"}}Section 2{{/pageNav.scroll-to}}</li>
-    </ul>
-  {{/scroll-to-nav}}
+  <h1 id="title">ember-scroll-to-context</h1>
+
+  <p>Scroll to elements on the page withing a given context and highlight visible section on the menu.</p>
+
+  {{dummy-menu}}
 </nav>
 
 <div class="main">
   {{#scroll-to-context context="page" on="window" as |pageContext|}}
+    {{#pageContext.section name="welcome" class="section"}}
+      <h2>Welcome</h2>
+    {{/pageContext.section}}
 
-    {{#pageContext.section name="1" class="section contextual"}}
-      {{#scroll-to-nav context="local" tagName="ul" class="contextual-nav" as |localNav|}}
-        <li>{{#localNav.scroll-to section="A"}}A{{/localNav.scroll-to}}</li>
-        <li>{{#localNav.scroll-to section="B"}}B{{/localNav.scroll-to}}</li>
-        <li>{{#localNav.scroll-to section="C"}}C{{/localNav.scroll-to}}</li>
-      {{/scroll-to-nav}}
+    {{#pageContext.section name="installation" class="section"}}
+      <h2>Installation</h2>
+    {{/pageContext.section}}
+
+    {{#pageContext.section name="usage" class="section"}}
+      <h2>Usage</h2>
+    {{/pageContext.section}}
+
+    {{#pageContext.section name="options" class="section"}}
+      <h2>Options</h2>
+
+      <h3>scroll-to-nav</h3>
+
+      <ul>
+        <li>context</li>
+        <li>animate</li>
+      </ul>
+
+      <h3>scroll-to</h3>
+
+      <ul>
+        <li>section</li>
+        <li>animate</li>
+      </ul>
+
+      <h3>scroll-to-context</h3>
+
+      <ul>
+        <li>name</li>
+        <li>on (local, window)</li>
+        <li>direction</li>
+      </ul>
+
+      <h3>scroll-to-section</h3>
+
+      <ul>
+        <li>section</li>
+      </ul>
+
+    {{/pageContext.section}}
+
+    {{#pageContext.section name="nested-sections" class="section"}}
+      <div class="contextual">
+        {{#scroll-to-nav context="local" tagName="ul" class="contextual-nav" as |localNav|}}
+          <li>{{#localNav.scroll-to section="A"}}A{{/localNav.scroll-to}}</li>
+          <li>{{#localNav.scroll-to section="B"}}B{{/localNav.scroll-to}}</li>
+          <li>{{#localNav.scroll-to section="C"}}C{{/localNav.scroll-to}}</li>
+        {{/scroll-to-nav}}
 
         {{#scroll-to-context context="local" class="contextual-inner" as |localContext|}}
           {{localContext.section name="A" class="section"}}
           {{localContext.section name="B" class="section"}}
           {{localContext.section name="C" class="section"}}
         {{/scroll-to-context}}
+      </div>
     {{/pageContext.section}}
 
-    {{pageContext.section name="1A" class="section"}}
-    {{pageContext.section name="1B" class="section"}}
-    {{pageContext.section name="1B1" class="section"}}
-    {{pageContext.section name="2" class="section"}}
+    {{#pageContext.section name="examples" class="section"}}
+    {{/pageContext.section}}
 
   {{/scroll-to-context}}
 </div>
