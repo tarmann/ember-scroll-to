@@ -54,19 +54,7 @@
     {{/pageContext.section}}
 
     {{#pageContext.section name="nested-sections" class="section"}}
-      <div class="contextual">
-        {{#scroll-to-nav context="local" tagName="ul" class="contextual-nav" as |localNav|}}
-          <li>{{#localNav.scroll-to section="A"}}A{{/localNav.scroll-to}}</li>
-          <li>{{#localNav.scroll-to section="B"}}B{{/localNav.scroll-to}}</li>
-          <li>{{#localNav.scroll-to section="C"}}C{{/localNav.scroll-to}}</li>
-        {{/scroll-to-nav}}
-
-        {{#scroll-to-context context="local" class="contextual-inner" as |localContext|}}
-          {{localContext.section name="A" class="section"}}
-          {{localContext.section name="B" class="section"}}
-          {{localContext.section name="C" class="section"}}
-        {{/scroll-to-context}}
-      </div>
+      {{sample-contextual}}
     {{/pageContext.section}}
 
     {{#pageContext.section name="examples" class="section"}}
