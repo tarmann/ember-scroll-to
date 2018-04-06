@@ -12,17 +12,26 @@ export default Service.extend({
     this.set('contexts', A());
   },
 
-  registerContext(contextName){
-    let context = this.getContext(contextName);
+  registerContext(contextName, options){
+    let context = this.getContext(contextName, options);
+
     if(!context) {
-      context = { name: contextName , active: null, sections: A() };
+      context = { name: contextName, active: null, sections: A() };
       get(this, 'contexts').pushObject(context);
     }
+
     return context;
   },
 
-  getContext(contextName){
-    return get(this, 'contexts').findBy('name', contextName);
+  getContext(contextName, options){
+    const context = get(this, 'contexts').findBy('name', contextName);
+
+    if(context && options) {
+      set(context, 'el', options.el);
+      set(context, 'on', options.on);
+    }
+
+    return context;
   },
 
   unregisterContext(contextName){

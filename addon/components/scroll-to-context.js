@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get } from '@ember/object';
+import { get, set } from '@ember/object';
 import { throttle } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import layout from '../templates/components/scroll-to-context';
@@ -10,14 +10,10 @@ export default Component.extend({
 
   scrollToService: service(),
 
-  init() {
-    this._super(...arguments);
-    get(this, 'scrollToService').registerContext( get(this, 'context') );
-  },
-
   didInsertElement(){
     this._super(...arguments);
     this.updateEl();
+    this.registerContext();
     this.addEventListeners();
     this.updateContext();
   },
@@ -27,12 +23,14 @@ export default Component.extend({
     this.removeEventListeners();
   },
 
-  onScroll() {
-    throttle(this, this.updateContext.bind(this), 500);
+  registerContext(){
+    const options = { el: get(this, 'el'), on: get(this, 'on') }
+    get(this, 'scrollToService').registerContext( get(this, 'context'), options);
   },
 
   updateEl(){
-    this.set('el', get(this, "on") === 'window' ? window : this.$().get(0));
+    const el = get(this, 'on') === 'window' ? window : this.$().get(0)
+    set(this, 'el', el);
   },
 
   addEventListeners(){
@@ -45,6 +43,10 @@ export default Component.extend({
 
   updateContext() {
     get(this, 'scrollToService').updateContext( get(this, 'context') );
+  },
+
+  onScroll() {
+    throttle(this, this.updateContext.bind(this), 500);
   }
 
 });
