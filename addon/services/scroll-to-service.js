@@ -4,8 +4,6 @@ import { A } from '@ember/array';
 
 export default Service.extend({
 
-  foo: 'bar',
-
   init() {
     this._super(...arguments);
     this.set('context', {});
@@ -23,12 +21,12 @@ export default Service.extend({
     return context;
   },
 
-  getContext(contextName, options){
+  getContext(contextName, updateOptions){
     const context = get(this, 'contexts').findBy('name', contextName);
 
-    if(context && options) {
-      set(context, 'el', options.el);
-      set(context, 'on', options.on);
+    if(context && updateOptions) {
+      set(context, 'el', updateOptions.el);
+      set(context, 'on', updateOptions.on);
     }
 
     return context;

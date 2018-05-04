@@ -29,7 +29,7 @@ export default Component.extend({
 
     const contextEl = get(this, '_context.el');
     const sectionEl = get(this, '_context.sections').findBy('name', get(this, 'section')).el;
-    const context = get(this, '_context.on') === 'window' ? 'html' : contextEl;
+    const context   = get(this, '_context.on') === 'window' ? 'html' : contextEl;
 
     const scrollTop = `${sectionEl.offsetTop}px`;
 
