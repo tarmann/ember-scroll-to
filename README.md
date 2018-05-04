@@ -1,15 +1,14 @@
 # ember-scroll-to-context
 
-This README outlines the details of collaborating on this Ember addon.
+[Short description of the addon.]
 
-## Installation
+## Install
 
 ember-scroll-to is an ember-cli addon. You can install it via:
 
 ```bash
 ember install ember-scroll-to-context
 ```
-
 
 ## Usage
 
@@ -37,17 +36,18 @@ This addon makes two components available: `scroll-to-nav` and `scroll-to-contex
 
 ### Running
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
 
 ### Running Tests
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `ember try:each` – Runs the test suite against multiple Ember versions
 
 ### Building
 
-* `ember build`
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
